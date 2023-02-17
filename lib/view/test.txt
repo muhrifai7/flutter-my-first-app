@@ -1,0 +1,19 @@
+Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                 Text("1",style: TextStyle(fontSize: 20),
+                ),
+                Row(
+                  children: [
+                    RaisedButton(
+                      onPressed:(){},
+                      child:const Icon(Icons.remove),
+                    ),
+                    RaisedButton(
+                      onPressed:(){},
+                      child:const Icon(Icons.remove),
+                    )
+                  ],
+                ),
+              ],
+            ),
