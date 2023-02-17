@@ -2,24 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:faker/faker.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
   // const MyApp({super.key});
-  int counter = 1;
-
+  // final valuenya statles/tidak berubah
   var faker = Faker();
-
   final List<Color> myColor = [Colors.red];
 
+  MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     // layer screen
@@ -27,60 +19,30 @@ class _MyAppState extends State<MyApp> {
       // debugShowCheckedModeBanner: false,
       home: Scaffold(
         // backgroundColor: Colors.purpleAccent,
-        // body:
-        // ListView.separated(
-        //     itemBuilder: (context, index) {
-        //       return Container(
-        //         height: 100,
-        //         width: 300,
-        //         color: myColor[index],
-        //       );
-        //     },
-        //     itemCount: myColor.length,
-        //     separatorBuilder: (context, index) {
-        //       return Divider(
-        //         color: myColor[index],
-        //       );
-        //     }),
-        // ListView.builder(
-        // itemCount: 100,
-        // itemBuilder: (context, index) {
-        //   return ChatItam(
-        //       imgUrl: "https://picsum.photos/id/$index/200/300",
-        //       title: faker.person.name(),
-        //       subtitle: faker.lorem.sentence());
-        // },
-        // ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(counter.toString(), style: const TextStyle(fontSize: 20)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      counter--;
-                    });
-                    print(counter);
-                  },
-                  child: const Icon(Icons.remove),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      counter++;
-                    });
-                    print(counter);
-                  },
-                  child: const Icon(Icons.add),
-                ),
-              ],
-            )
-          ],
+        body:
+            // ListView.separated(
+            //     itemBuilder: (context, index) {
+            //       return Container(
+            //         height: 100,
+            //         width: 300,
+            //         color: myColor[index],
+            //       );
+            //     },
+            //     itemCount: myColor.length,
+            //     separatorBuilder: (context, index) {
+            //       return Divider(
+            //         color: myColor[index],
+            //       );
+            //     }),
+            ListView.builder(
+          itemCount: 100,
+          itemBuilder: (context, index) {
+            return ChatItam(
+                imgUrl: "https://picsum.photos/id/$index/200/300",
+                title: faker.person.name(),
+                subtitle: faker.lorem.sentence());
+          },
         ),
-
         appBar: AppBar(
           title: const Text("My Apps"),
         ),
