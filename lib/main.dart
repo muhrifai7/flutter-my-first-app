@@ -1,112 +1,87 @@
 import 'package:flutter/material.dart';
-import 'package:faker/faker.dart';
+// import 'package:faker/faker.dart';
+import 'package:my_app/view/login_form.dart';
+import 'package:my_app/view/signup_form.dart';
+import 'package:my_app/view/dashboard.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+// MaterialApp(
+//       title: 'My',
+//       // Start the app with the "/" named route. In this case, the app starts
+//       // on the FirstScreen widget.
+//       initialRoute: '/',
+//       routes: {
+//         // When navigating to the "/" route, build the FirstScreen widget.
+//         '/': (context) => const FirstScreen(),
+//         // When navigating to the "/second" route, build the SecondScreen widget.
+//         '/second': (context) => const SecondScreen(),
+//       },
+//     ),
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return (MaterialApp(
+      home: const MyTest(),
+      initialRoute: '/login',
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/login': (context) => const LoginForm(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/signup': (context) => const SignupForm(),
+        '/dashboard': (context) => Dashboard(),
+      },
+    ));
+  }
 }
 
-class _MyAppState extends State<MyApp> {
-  // const MyApp({super.key});
-  int counter = 1;
-
-  var faker = Faker();
-
-  final List<Color> myColor = [Colors.red];
+class SecondScreen extends StatelessWidget {
+  const SecondScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // layer screen
-    return MaterialApp(
-      // debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        // backgroundColor: Colors.purpleAccent,
-        // body:
-        // ListView.separated(
-        //     itemBuilder: (context, index) {
-        //       return Container(
-        //         height: 100,
-        //         width: 300,
-        //         color: myColor[index],
-        //       );
-        //     },
-        //     itemCount: myColor.length,
-        //     separatorBuilder: (context, index) {
-        //       return Divider(
-        //         color: myColor[index],
-        //       );
-        //     }),
-        // ListView.builder(
-        // itemCount: 100,
-        // itemBuilder: (context, index) {
-        //   return ChatItam(
-        //       imgUrl: "https://picsum.photos/id/$index/200/300",
-        //       title: faker.person.name(),
-        //       subtitle: faker.lorem.sentence());
-        // },
-        // ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(counter.toString(), style: const TextStyle(fontSize: 20)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      counter--;
-                    });
-                    print(counter);
-                  },
-                  child: const Icon(Icons.remove),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      counter++;
-                    });
-                    print(counter);
-                  },
-                  child: const Icon(Icons.add),
-                ),
-              ],
-            )
-          ],
-        ),
-
-        appBar: AppBar(
-          title: const Text("My Apps"),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Second Screen'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          // Within the SecondScreen widget
+          onPressed: () {
+            // Navigate back to the first screen by popping the current route
+            // off the stack.
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
         ),
       ),
     );
   }
 }
 
-class ChatItam extends StatelessWidget {
-  final String imgUrl;
-  final String title;
-  final String subtitle;
-  const ChatItam(
-      {super.key,
-      required this.imgUrl,
-      required this.title,
-      required this.subtitle});
+class MyTest extends StatelessWidget {
+  const MyTest({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-        title: Text(title),
-        subtitle: Text(subtitle),
-        leading: CircleAvatar(
-          backgroundImage: NetworkImage(imgUrl),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("My Apps"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          // Within the `FirstScreen` widget
+          onPressed: () {
+            // Navigate to the second screen using a named route.
+            Navigator.pushNamed(context, '/login');
+          },
+          child: const Text('Launch screen'),
         ),
-        trailing: const Text("10:00 Am"));
+      ),
+    );
   }
 }

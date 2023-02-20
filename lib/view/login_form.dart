@@ -1,58 +1,100 @@
 import 'package:flutter/material.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+  const LoginForm({Key? key}) : super(key: key);
 
   @override
-  _LoginFormState createState() => _LoginFormState();
+  State<LoginForm> createState() => _MyStatefulWidgetState();
 }
 
-class _LoginFormState extends State<LoginForm> {
-  final _formKey = GlobalKey<FormState>();
-  String? _email = '';
-  String? _password = '';
+class _MyStatefulWidgetState extends State<LoginForm> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          TextFormField(
-            decoration: const InputDecoration(labelText: 'Email'),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return 'Please enter an email';
-              }
-              return null;
-            },
-            onSaved: (value) => _email = value,
+    return Scaffold(
+      // appBar: AppBar(
+      //   title: const Text('First Screen'),
+      // ),
+      body: Center(
+          child: ListView(
+        children: <Widget>[
+          Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.all(10),
+              child: const Text(
+                '',
+                style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 30),
+              )),
+          Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.all(10),
+              child: const Text(
+                'Sign in',
+                style: TextStyle(fontSize: 20),
+              )),
+          Container(
+            padding: const EdgeInsets.all(10),
+            child: TextField(
+              controller: nameController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'User Name',
+              ),
+            ),
           ),
-          TextFormField(
-            decoration: const InputDecoration(labelText: 'Password'),
-            obscureText: true,
-            validator: (value) {
-              if (value!.isEmpty) {
-                return 'Please enter a password';
-              }
-              return null;
-            },
-            onSaved: (value) => _password = value,
+          Container(
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+            child: TextField(
+              obscureText: true,
+              controller: passwordController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Password',
+              ),
+            ),
           ),
-          raisedButton(
-            child: const Text('Submit'),
+          TextButton(
             onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                print('Email: $_email');
-                print('Password: $_password');
-              }
+              //forgot password screen
             },
+            child: const Text(
+              'Forgot Password',
+            ),
+          ),
+          Container(
+              height: 50,
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: ElevatedButton(
+                child: const Text('Login'),
+                onPressed: () {
+                  // print(nameController.text);
+                  // print(passwordController.text);
+                  Navigator.pushNamed(context, "/dashboard");
+                },
+              )),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text('Does not have account?'),
+              TextButton(
+                child: const Text(
+                  'Sign up',
+                  style: TextStyle(fontSize: 20),
+                ),
+                onPressed: () {
+                  // Navigate to the second screen using a named route.
+                  Navigator.pushNamed(context, '/signup');
+                },
+              )
+            ],
           ),
         ],
-      ),
+      )),
     );
   }
-
-  raisedButton({required Text child, required Null Function() onPressed}) {}
 }
