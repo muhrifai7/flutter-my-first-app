@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 // import 'package:faker/faker.dart';
-import 'package:my_app/view/login_form.dart';
-import 'package:my_app/view/signup_form.dart';
-import 'package:my_app/view/dashboard.dart';
+import 'package:my_app/pages/login_form.dart';
+import 'package:my_app/pages/signup_form.dart';
+import 'package:my_app/pages/dashboard.dart';
 
 void main() {
   runApp(const MyApp());

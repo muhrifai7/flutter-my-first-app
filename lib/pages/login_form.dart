@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import "package:my_app/models/http_statefull.dart";
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -72,9 +73,11 @@ class _MyStatefulWidgetState extends State<LoginForm> {
               child: ElevatedButton(
                 child: const Text('Login'),
                 onPressed: () {
-                  // print(nameController.text);
-                  // print(passwordController.text);
-                  Navigator.pushNamed(context, "/dashboard");
+                  HttpStateFull.callApi(nameController as String,
+                          passwordController as String)
+                      .then((value) => {print(value.name)});
+                  print(passwordController.text);
+                  // Navigator.pushNamed(context, "/dashboard");
                 },
               )),
           Row(
