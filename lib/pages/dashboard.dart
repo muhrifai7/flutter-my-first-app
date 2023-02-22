@@ -1,98 +1,73 @@
-// import 'package:flutter/material.dart';
-// import 'package:faker/faker.dart';
-
-// class Dashboard extends StatelessWidget {
-//   final faker = Faker();
-//   final List<Color> myColor = [Colors.red];
-
-//   Dashboard({super.key});
-//   @override
-//   Widget build(BuildContext context) {
-//     // layer screen
-//     return MaterialApp(
-//       // debugShowCheckedModeBanner: false,
-//       home: Scaffold(
-//         // backgroundColor: Colors.purpleAccent,
-//         body:
-//             // ListView.separated(
-//             //     itemBuilder: (context, index) {
-//             //       return Container(
-//             //         height: 100,
-//             //         width: 300,
-//             //         color: myColor[index],
-//             //       );
-//             //     },
-//             //     itemCount: myColor.length,
-//             //     separatorBuilder: (context, index) {
-//             //       return Divider(
-//             //         color: myColor[index],
-//             //       );
-//             //     }),
-//             ListView.builder(
-//           itemCount: 100,
-//           itemBuilder: (context, index) {
-//             return ChatItam(
-//                 imgUrl: "https://picsum.photos/id/$index/200/300",
-//                 title: faker.person.name(),
-//                 subtitle: faker.lorem.sentence());
-//           },
-//         ),
-//         appBar: AppBar(
-//           title: const Text("My Apps"),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// class ChatItam extends StatelessWidget {
-//   final String imgUrl;
-//   final String title;
-//   final String subtitle;
-//   const ChatItam(
-//       {super.key,
-//       required this.imgUrl,
-//       required this.title,
-//       required this.subtitle});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListTile(
-//         title: Text(title),
-//         subtitle: Text(subtitle),
-//         leading: CircleAvatar(
-//           backgroundImage: NetworkImage(imgUrl),
-//         ),
-//         trailing: const Text("10:00 Am"));
-//   }
-// }
-
 import 'package:flutter/material.dart';
+import 'package:my_app/view/home.dart';
+import 'package:my_app/view/profile.dart';
+import 'package:my_app/view/expand.dart';
+import 'package:my_app/view/order.dart';
 
-void main() {
-  runApp(const Dashboard());
+class Dashboard extends StatefulWidget {
+  const Dashboard({Key? key}) : super(key: key);
+
+  @override
+  State<Dashboard> createState() => _DashboardState();
 }
 
-class Dashboard extends StatelessWidget {
-  const Dashboard({super.key});
-
+class _DashboardState extends State<Dashboard> {
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: SafeArea(
+        child: IndexedStack(
+          index: _currentIndex,
+          children: const [
+            HomeScreen(),
+            OrderScreen(),
+            ExpandScreen(),
+            ProfileScreen(),
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white10,
         elevation: 0,
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: SizedBox(
+              width: 32.0,
+              height: 32.0,
+              child: Icon(Icons.home),
+            ),
             label: 'Home',
           ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.dvr),
-          //   label: 'dashboard',
-          // ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_box_rounded),
+            icon: SizedBox(
+              width: 32.0,
+              height: 32.0,
+              child: Icon(Icons.online_prediction_sharp),
+            ),
+            label: 'Pemesanan',
+          ),
+          BottomNavigationBarItem(
+            icon: SizedBox(
+              width: 32.0,
+              height: 32.0,
+              child: Icon(Icons.ac_unit),
+            ),
+            label: 'Pengeluaran',
+          ),
+          BottomNavigationBarItem(
+            icon: SizedBox(
+              width: 32.0,
+              height: 32.0,
+              child: Icon(Icons.account_box_rounded),
+            ),
             label: 'Profile',
           ),
         ],
