@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/api/api_profile.dart';
 import '../models/profile.dart';
+import '../component/ProfileItem.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -39,13 +40,10 @@ class _HomeScreen extends State<HomeScreen> {
       child: ListView.builder(
           itemCount: profiles?.length,
           itemBuilder: (context, index) {
-            return Container(
-              child: Text(profiles![index].email,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold)),
-            );
+            return ProfileItem(
+                imgUrl: profiles![index].avatar,
+                title: profiles![index].first_name,
+                subtitle: profiles![index].email);
           }),
     ));
   }
