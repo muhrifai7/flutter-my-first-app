@@ -23,6 +23,25 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => const SignupForm(),
         '/dashboard': (context) => const Dashboard(),
       },
+      theme: ThemeData(
+          primaryColor: Colors.black,
+          fontFamily: 'Roboto',
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  shadowColor: Colors.grey,
+                  elevation: 20,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(0.0))))),
+          inputDecorationTheme: InputDecorationTheme(
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(0.0))),
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.black,
+              alignment: Alignment.centerLeft,
+            ),
+          )),
     ));
   }
 }

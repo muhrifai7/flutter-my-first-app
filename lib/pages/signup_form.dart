@@ -79,8 +79,8 @@ class _MyStatefulWidgetState extends State<SignupForm> {
             child: ElevatedButton(
               child: const Text('Signup'),
               onPressed: () {
-                print(nameController.text);
-                print(passwordController.text);
+                // print(nameController.text);
+                // print(passwordController.text);
               },
             )),
         Row(

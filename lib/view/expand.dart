@@ -61,7 +61,7 @@ class _ExpandScreenSate extends State<ExpandScreen> {
                       onChanged: (value) {},
                       // onChanged: () {
                       //   // setState(() {
-                      //   //   _bankChoose = newValue.bank_name;
+                      //   //   _bankChoose = newValue.bankName;
                       //   // });
                       // },
                       items: _dropdownValues
@@ -90,7 +90,7 @@ class _ExpandScreenSate extends State<ExpandScreen> {
 }
 
 class BankListDataModel {
-  String bank_name;
-  String bank_logo;
-  BankListDataModel(this.bank_name, this.bank_logo);
+  String bankName;
+  String bankLogo;
+  BankListDataModel(this.bankName, this.bankLogo);
 }

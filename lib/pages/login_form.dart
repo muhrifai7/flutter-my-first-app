@@ -94,10 +94,10 @@ class _MyStatefulWidgetState extends State<LoginForm> {
                           // process the response data here
                         } catch (error) {
                           // handle the error here
-                          print('An error occurred: $error');
+                          // print('An error occurred: $error');
                         }
                       } else {
-                        print("Not Validated");
+                        // print("Not Validated");
                       }
                     }
                   },
@@ -118,3 +118,13 @@ class _MyStatefulWidgetState extends State<LoginForm> {
     );
   }
 }
+
+// class MyCustomClass {
+//   const MyCustomClass();
+
+//   Future<void> myAsyncMethod(BuildContext context) async {
+//     Navigator.pushNamed(context, '/dashboard');
+//     await Future.delayed(const Duration(seconds: 2));
+//     if (context.mounted) Navigator.of(context).pop();
+//   }
+// }
