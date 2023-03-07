@@ -8,9 +8,32 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenSate extends State<OrderScreen> {
-  String? _selectedValue;
+  // final List<String> _dropdownValues = ['London', 'Munich'];
+  late List<Map<String, dynamic>> _dropdownValues;
+  @override
+  void initState() {
+    super.initState();
+    _dropdownValues = [
+      {
+        "id": "1101",
+        "province_id": "11",
+        "name": "KABUPATEN SIMEULUE",
+        "alt_name": "KABUPATEN SIMEULUE",
+        "latitude": 2.61667,
+        "longitude": 96.08333
+      },
+      {
+        "id": "1102",
+        "province_id": "11",
+        "name": "KABUPATEN ACEH SINGKIL",
+        "alt_name": "KABUPATEN ACEH SINGKIL",
+        "latitude": 2.41667,
+        "longitude": 97.91667
+      }
+    ];
+  }
 
-  final List<String> _dropdownValues = ['London', 'Munich'];
+  var _selectedValue = 'Pilih Kota';
 
   final TextEditingController departureController = TextEditingController();
 
@@ -30,12 +53,6 @@ class _OrderScreenSate extends State<OrderScreen> {
                 return InputDecorator(
                   decoration: InputDecoration(
                       contentPadding: const EdgeInsets.fromLTRB(12, 10, 20, 20),
-                      // labelText: "hi",
-                      // labelStyle: textStyle,
-                      // labelText: _dropdownValue == null
-                      //     ? 'Where are you from'
-                      //     : 'From',
-                      // errorText: _errorBank,
                       errorStyle: const TextStyle(
                           color: Colors.redAccent, fontSize: 16.0),
                       border: OutlineInputBorder(
@@ -44,41 +61,36 @@ class _OrderScreenSate extends State<OrderScreen> {
                     child: DropdownButton<String>(
                       style: const TextStyle(
                         fontSize: 16,
-                        color: Colors.black12,
+                        color: Color.fromARGB(31, 12, 1, 1),
                         fontFamily: "verdana_regular",
-                      ),
-                      hint: const Text(
-                        "Pilih Kota Keberangkatan",
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 16,
-                          fontFamily: "verdana_regular",
-                        ),
                       ),
                       value: _selectedValue,
                       isExpanded: true,
                       isDense: true,
-                      onChanged: (value) {},
-                      // onChanged: () {
-                      //   // setState(() {
-                      //   //   _bankChoose = newValue.bank_name;
-                      //   // });
-                      // },
+                      onChanged: (newValue) {
+                        setState(() {
+                          _selectedValue = newValue!;
+                        });
+                      },
                       items: _dropdownValues
                           .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem(
-                          value: value,
-                          child: Row(
-                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const SizedBox(
-                                width: 15,
+                            return DropdownMenuItem(
+                              value: value,
+                              child: Row(
+                                children: [
+                                  const SizedBox(
+                                    width: 15,
+                                  ),
+                                  Text(
+                                    value,
+                                    style: const TextStyle(color: Colors.black),
+                                  ),
+                                ],
                               ),
-                              Text(value),
-                            ],
-                          ),
-                        );
-                      }).toList(),
+                            );
+                          } as DropdownMenuItem<String> Function(
+                              Map<String, dynamic> e))
+                          .toList(),
                     ),
                   ),
                 );
