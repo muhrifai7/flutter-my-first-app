@@ -36,6 +36,11 @@ class _OrderScreenSate extends State<OrderScreen> {
     "8 penumpang",
     "9 penumpang",
   ];
+
+  final List<Map<String, dynamic>> _passengerOptions = [
+    {'id': 1, 'name': '1 Penumpang'},
+  ];
+
   late DateTime _selectedDate;
   final DateFormat _dateFormat = DateFormat('EEEE, d MMM yyyy');
   final TextEditingController userName = TextEditingController();
@@ -43,6 +48,8 @@ class _OrderScreenSate extends State<OrderScreen> {
   String? selectedDeparture;
   String? selectedDestination;
   String? selectedPesangger;
+  String? totalPassanger;
+  int? selectedPassenger;
   // late List<Map<String, dynamic>> _dropdownValues;
   @override
   void initState() {
@@ -51,6 +58,9 @@ class _OrderScreenSate extends State<OrderScreen> {
     selectedDeparture = listKota[0];
     selectedDestination = listKota[2];
     selectedPesangger = penumpang[0];
+    totalPassanger = '1';
+    int selectedPassenger = _passengerOptions[0]['id'];
+
     // _dropdownValues = []
   }
 
@@ -62,7 +72,7 @@ class _OrderScreenSate extends State<OrderScreen> {
           MaterialPageRoute(
             builder: (context) => FlightReceipt(
               passengerName: userName.text,
-              seatNumber: seatNumber.text,
+              selectedPassenger: selectedPassenger!,
               airlineName: 'Nama travel',
               flightNumber: 'B 2002 SHD',
               departureCity: selectedDeparture,
@@ -206,28 +216,31 @@ class _OrderScreenSate extends State<OrderScreen> {
                     ),
                   ),
                   Container(
-                      margin: const EdgeInsets.only(
-                          top: 10), // Add your margin here
-                      child: SizedBox(
-                        child: DropdownSearch<String>(
-                          popupProps: const PopupProps.menu(
-                            showSelectedItems: true,
-                          ),
-                          items: penumpang,
-                          dropdownDecoratorProps: const DropDownDecoratorProps(
-                            dropdownSearchDecoration: InputDecoration(
-                              labelText: "Jumlah Penumpang",
-                              hintText: "Pilih",
-                            ),
-                          ),
-                          onChanged: (value) {
-                            setState(() {
-                              selectedPesangger = value;
-                            });
-                          },
-                          selectedItem: selectedPesangger,
-                        ),
-                      )),
+                    margin:
+                        const EdgeInsets.only(top: 10), // Add your margin here
+                    child: SizedBox(
+                        child: DropdownButtonFormField<int>(
+                      value: selectedPassenger,
+                      decoration: const InputDecoration(
+                        labelText: 'Penumpang',
+                        hintText: 'Pilih jumlah penumpang',
+                      ),
+                      items:
+                          _passengerOptions.map((Map<String, dynamic> option) {
+                        return DropdownMenuItem<int>(
+                          value: option['id'],
+                          child: Text(option['name']),
+                        );
+                      }).toList(),
+                      onChanged: (int? value) {
+                        if (value != null) {
+                          setState(() {
+                            selectedPassenger = value;
+                          });
+                        }
+                      },
+                    )),
+                  ),
                   Container(
                     margin: const EdgeInsets.only(top: 10),
                     child: ElevatedButton(

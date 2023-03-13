@@ -5,7 +5,7 @@ import 'package:intl/date_symbol_data_local.dart';
 
 class FlightReceipt extends StatelessWidget {
   final String? passengerName;
-  final String? seatNumber;
+  final int? selectedPassenger;
   final String? airlineName;
   final String? flightNumber;
   final String? departureCity;
@@ -16,7 +16,7 @@ class FlightReceipt extends StatelessWidget {
   const FlightReceipt({
     super.key,
     required this.passengerName,
-    required this.seatNumber,
+    required this.selectedPassenger,
     required this.airlineName,
     required this.flightNumber,
     required this.departureCity,
@@ -27,7 +27,7 @@ class FlightReceipt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(seatNumber);
+    print(selectedPassenger);
     final formatter = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ');
     initializeDateFormatting('id', null); // initialize Indonesian locale
 
@@ -36,7 +36,7 @@ class FlightReceipt extends StatelessWidget {
         title: const Text('Tiket Kuitansi'),
       ),
       body: ListView.builder(
-          itemCount: int.parse(seatNumber!),
+          itemCount: selectedPassenger!,
           itemBuilder: (BuildContext context, int index) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
