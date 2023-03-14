@@ -39,6 +39,9 @@ class _OrderScreenSate extends State<OrderScreen> {
 
   final List<Map<String, dynamic>> _passengerOptions = [
     {'id': 1, 'name': '1 Penumpang'},
+    {'id': 2, 'name': '2 Penumpang'},
+    {'id': 3, 'name': '3 Penumpang'},
+    {'id': 4, 'name': '4 Penumpang'},
   ];
 
   late DateTime _selectedDate;
@@ -48,7 +51,6 @@ class _OrderScreenSate extends State<OrderScreen> {
   String? selectedDeparture;
   String? selectedDestination;
   String? selectedPesangger;
-  String? totalPassanger;
   int? selectedPassenger;
   // late List<Map<String, dynamic>> _dropdownValues;
   @override
@@ -57,9 +59,7 @@ class _OrderScreenSate extends State<OrderScreen> {
     _selectedDate = DateTime.now();
     selectedDeparture = listKota[0];
     selectedDestination = listKota[2];
-    selectedPesangger = penumpang[0];
-    totalPassanger = '1';
-    int selectedPassenger = _passengerOptions[0]['id'];
+    selectedPassenger = _passengerOptions[0]['id'];
 
     // _dropdownValues = []
   }
@@ -222,7 +222,7 @@ class _OrderScreenSate extends State<OrderScreen> {
                         child: DropdownButtonFormField<int>(
                       value: selectedPassenger,
                       decoration: const InputDecoration(
-                        labelText: 'Penumpang',
+                        labelText: '1 Penumpang',
                         hintText: 'Pilih jumlah penumpang',
                       ),
                       items:
