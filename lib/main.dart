@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/login',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
-        '/login': (context) => const Dashboard(),
+        '/login': (context) => const LoginForm(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/signup': (context) => const SignupForm(),
         '/dashboard': (context) => const Dashboard(),

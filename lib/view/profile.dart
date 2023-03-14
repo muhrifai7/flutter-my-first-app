@@ -14,7 +14,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Dropdown Example'),
+        title: const Text('Profile Page'),
       ),
       body: Center(
         child: Column(

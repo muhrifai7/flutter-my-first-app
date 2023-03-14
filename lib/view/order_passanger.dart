@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import '../view/receipt.dart';
+import 'receipt_passanger.dart';
 
-class OrderScreen extends StatefulWidget {
-  const OrderScreen({Key? key}) : super(key: key);
+class OrderPassangerScreen extends StatefulWidget {
+  const OrderPassangerScreen({Key? key}) : super(key: key);
 
   @override
-  State<OrderScreen> createState() => _OrderScreenSate();
+  State<OrderPassangerScreen> createState() => _OrderPassangerScreenSate();
 }
 
-class _OrderScreenSate extends State<OrderScreen> {
+class _OrderPassangerScreenSate extends State<OrderPassangerScreen> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   List<String> listKota = [
     "Jakarta",
@@ -70,7 +71,7 @@ class _OrderScreenSate extends State<OrderScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => FlightReceipt(
+            builder: (context) => PasanggerReceipt(
               passengerName: userName.text,
               selectedPassenger: selectedPassenger!,
               airlineName: 'Nama travel',

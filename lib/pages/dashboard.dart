@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app/view/home.dart';
 import 'package:my_app/view/profile.dart';
 import 'package:my_app/view/expand.dart';
-import 'package:my_app/view/order.dart';
+import 'package:my_app/pages/order.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
