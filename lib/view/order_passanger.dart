@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -48,7 +47,7 @@ class _OrderPassangerScreenSate extends State<OrderPassangerScreen> {
   late DateTime _selectedDate;
   final DateFormat _dateFormat = DateFormat('EEEE, d MMM yyyy');
   final TextEditingController userName = TextEditingController();
-  final TextEditingController seatNumber = TextEditingController();
+  // final TextEditingController seatNumber = TextEditingController();
   String? selectedDeparture;
   String? selectedDestination;
   String? selectedPesangger;
@@ -126,22 +125,22 @@ class _OrderPassangerScreenSate extends State<OrderPassangerScreen> {
                         validator: MultiValidator(
                             [RequiredValidator(errorText: "* Required")])),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: TextFormField(
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter
-                              .digitsOnly // Only allow digits
-                        ],
-                        controller: seatNumber,
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Nomor Kursi',
-                            hintText: 'Nomor Kusrsi'),
-                        validator: MultiValidator(
-                            [RequiredValidator(errorText: "* Required")])),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(top: 10.0),
+                  //   child: TextFormField(
+                  //       keyboardType: TextInputType.number,
+                  //       inputFormatters: <TextInputFormatter>[
+                  //         FilteringTextInputFormatter
+                  //             .digitsOnly // Only allow digits
+                  //       ],
+                  //       controller: seatNumber,
+                  //       decoration: const InputDecoration(
+                  //           border: OutlineInputBorder(),
+                  //           labelText: 'Nomor Kursi',
+                  //           hintText: 'Nomor Kusrsi'),
+                  //       validator: MultiValidator(
+                  //           [RequiredValidator(errorText: "* Required")])),
+                  // ),
                   Container(
                       margin: const EdgeInsets.only(
                           top: 10), // Add your margin here
