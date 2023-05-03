@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/api/api_profile.dart';
 import '../models/profile.dart';
-import '../component/ProfileItem.dart';
+import '../component//Rute.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -122,32 +122,78 @@ class _HomeScreen extends State<HomeScreen> {
                   },
                 ),
               ),
+              Container(
+                margin: const EdgeInsets.only(bottom: 10, top: 10),
+                child: const Text(
+                  "Rute Bus dan Waktu",
+                  style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(31, 17, 9, 9)),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.all(10),
+                child: Column(children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        'Rute',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Text(
+                        'Waktu',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  )
+                ]),
+              ),
               Expanded(
-                //color: Colors.white,
                 child: ListView.builder(
                     itemCount: profiles?.length,
                     itemBuilder: (context, index) {
-                      return ProfileItem(
-                          imgUrl: profiles![index].avatar,
-                          title: profiles![index].first_name,
-                          subtitle: profiles![index].email);
+                      return const Rute(
+                          departureCity: "Jakarta",
+                          arrivalCity: "Malang",
+                          departureTime: "20:00");
                     }),
               ),
-              Container(
-                margin: const EdgeInsets.only(top: 10),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(
-                        255, 30, 109, 174), // set the background color
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(10), // set the border radius
-                    ),
-                  ),
-                  child: const Text('Simpan'),
-                ),
-              ),
+              // Expanded(
+              //   //color: Colors.white,
+              //   child: ListView.builder(
+              //       itemCount: profiles?.length,
+              //       itemBuilder: (context, index) {
+              //         return ProfileItem(
+              //             imgUrl: profiles![index].avatar,
+              //             title: profiles![index].first_name,
+              //             subtitle: profiles![index].email);
+              //       }),
+              // ),
+              // Container(
+              //   margin: const EdgeInsets.only(top: 10),
+              //   child: ElevatedButton(
+              //     onPressed: () {},
+              //     style: ElevatedButton.styleFrom(
+              //       backgroundColor: const Color.fromARGB(
+              //           255, 30, 109, 174), // set the background color
+              //       shape: RoundedRectangleBorder(
+              //         borderRadius:
+              //             BorderRadius.circular(10), // set the border radius
+              //       ),
+              //     ),
+              //     child: const Text('Simpan'),
+              //   ),
+              // ),
             ])));
   }
 }

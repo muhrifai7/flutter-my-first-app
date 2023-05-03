@@ -12,26 +12,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text('Profile Page'),
-      ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
-              'Profile',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'This is the Profile screen.',
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Text('Halaman Profile'),
         ),
-      ),
-    );
+        body: const ListTile(
+            title: Text("Rifai"),
+            subtitle: Text("rifai@gmail.com"),
+            leading: CircleAvatar(
+              backgroundImage: NetworkImage(""),
+            )));
+    // trailing: Text("10:00 Am")));
   }
 }
